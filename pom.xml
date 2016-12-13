@@ -1,0 +1,33 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.stt.myFrameworkDemo</groupId>
+  <artifactId>MyFrameworkDemo</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>框架练习使用</name>
+  
+  <modules>
+  	<module>JPADemo</module>
+  </modules>
+  
+   <!-- 统一配置构件的版本号 -->
+  <properties>
+  	<junit.version>4.10</junit.version>
+  </properties>
+  
+  <!-- 依赖管理  -->
+  <!-- 如果没有该标签，那么父项目中的所有jar包，子项目都默认加载 -->
+  <!-- 如果添加了该标签，那么子项目要添加和父项目同样的jar包，需要有g 和a即可 -->
+  <dependencyManagement>
+	<dependencies>
+		<dependency>
+		  <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+          <version>${junit.version}</version>
+          <scope>test</scope>
+		</dependency>
+	</dependencies>
+  </dependencyManagement>
+  
+  
+</project>
