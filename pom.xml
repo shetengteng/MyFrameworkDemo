@@ -8,16 +8,18 @@
   
   <modules>
   	<module>JPADemo</module>
+  	<module>ActiveMQDemo</module>
   </modules>
   
    <!-- 统一配置构件的版本号 -->
   <properties>
   	<junit.version>4.10</junit.version>
+  	<activemq.version>5.11.1</activemq.version>
   </properties>
   
   <!-- 依赖管理  -->
   <!-- 如果没有该标签，那么父项目中的所有jar包，子项目都默认加载 -->
-  <!-- 如果添加了该标签，那么子项目要添加和父项目同样的jar包，需要有g 和a即可 -->
+  <!-- 如果添加了该标签，那么子项目要添加和父项目同样的jar包，需要有g和a即可 -->
   <dependencyManagement>
 	<dependencies>
 		<dependency>
@@ -26,8 +28,35 @@
           <version>${junit.version}</version>
           <scope>test</scope>
 		</dependency>
+		
+	    <!-- https://mvnrepository.com/artifact/org.apache.activemq/activemq-all -->
+		<dependency>
+		    <groupId>org.apache.activemq</groupId>
+		    <artifactId>activemq-all</artifactId>
+		    <version>${activemq.version}</version>
+		</dependency>
+		
 	</dependencies>
+	
   </dependencyManagement>
   
+  <!-- 
+ 执行mvn 报错 source-1.5 中不支持 diamond运算符
+指定Maven的版本，并且指定Maven使用的jdk版本
+同时解决Override报错问题
+ -->
+     <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
   
 </project>
