@@ -24,8 +24,10 @@ public class Receiver {
 			Connection conn = connectionFactory.createConnection();
 			conn.start();
 			// 3.通过connection对象创建session会话，以后的操作都在session上进行处理
-			// 接收和发送消息，参数配置1.表示是否启用事务，参数配置2，为签收模式，一般设置为自动签收
-			// 这里示例不启用事务，如果启用了事务，那么消费者没有消费，则消息会撤销，在P2P中，等于是同步的消息模式
+			// 接收和发送消息
+			// 参数配置1.表示是否启用事务，
+			// 参数配置2，为签收模式，一般设置为自动签收
+			// 这里示例不启用事务，如果启用了事务，需要提交
 			Session session = conn.createSession(false, Session.AUTO_ACKNOWLEDGE);
 			// 4.通过Session创建Destination对象，是一个客户端用来指定生产消息目标和消费来源的对象
 			// 在P2P模式中，Destination为Queue，在Pub/Sub模式中，Destination被称为Topic

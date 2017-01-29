@@ -5,7 +5,7 @@
     <artifactId>MyFrameworkDemo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>ActiveMQDemo</artifactId>
+  <artifactId>ActiveMQ_Demo</artifactId>
     <properties>
    		 <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
  	</properties>
