@@ -7,21 +7,92 @@
     <artifactId>MyFrameworkDemo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <groupId>com.stt.myFrameworkDemo</groupId>
   <artifactId>ActiveMQ_Spring</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
-  <name>ActiveMQ_Spring Maven Webapp</name>
+  <name>ActiveMQ_Spring</name>
   <url>http://maven.apache.org</url>
   <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
+	    <dependency>
+	      <groupId>junit</groupId>
+	      <artifactId>junit</artifactId>
+	      <scope>test</scope>
+	    </dependency>
+	    
+   		<!-- 对war包的支持 -->
+		 <!-- 添加servlet支持 -->
+		 <dependency>
+		   <groupId>javax.servlet</groupId>
+		   <artifactId>javax.servlet-api</artifactId>
+		 </dependency>
+		 <!-- 添加jsp支持 -->
+		 <dependency>
+		   <groupId>javax.servlet.jsp</groupId>
+		   <artifactId>javax.servlet.jsp-api</artifactId>
+		 </dependency>
+		 <!-- 添加jtl支持 -->
+		 <dependency>
+		   <groupId>javax.servlet</groupId>
+		   <artifactId>jstl</artifactId>
+		 </dependency>
+		 
+		 <!-- Spring -->
+	 	<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope> 
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>	
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jms</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-oxm</artifactId>
+		</dependency>	
+		
+		<dependency>
+	   		<groupId>org.apache.activemq</groupId>
+	    	<artifactId>activemq-all</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-pool</artifactId>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-core</artifactId>
+		</dependency> 
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		</dependency>
+		
+		<dependency>
+		    <groupId>javax.mail</groupId>
+		    <artifactId>mail</artifactId>
+		</dependency>
+
+		
   </dependencies>
   <build>
     <finalName>ActiveMQ_Spring</finalName>
   </build>
+  <description>MQ与Spring的整合，同时含有发送邮件的示例，包含发送端和接收端</description>
 </project>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd"
+	default-autowire="byName" default-lazy-init="false">
+	
+	<!-- 扫描包起始位置 -->
+	<context:component-scan base-package="com.stt" />
+	<!-- 注释配置:可省略，使用了component-scan 自动的添加了该标签
+		<context:annotation-config />
+	 -->
+	<!-- 读入配置属性文件 -->
+	<context:property-placeholder location="classpath:config.properties" />
+	<!-- 导入其他资源 -->
+	<import resource="classpath:spring-activemq.xml" />
+	<import resource="classpath:spring-mail.xml" />
+</beans>
