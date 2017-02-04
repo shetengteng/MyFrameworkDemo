@@ -117,11 +117,14 @@
 		</dependency>
 		<!-- ******** jackson end ******** -->
 		
+		<!-- ******** mail start ******** -->
 		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
-  			<version>1.4.7</version>
+			<!-- 该版本能用，其他的版本好像有问题 -->
+  			<version>1.4.4</version>
 		</dependency>
+		<!-- ******** mail end ******** -->
 		
 	</dependencies>
   </dependencyManagement>

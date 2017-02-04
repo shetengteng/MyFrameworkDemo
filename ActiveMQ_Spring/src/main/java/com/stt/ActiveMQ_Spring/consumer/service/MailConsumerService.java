@@ -19,15 +19,18 @@ public class MailConsumerService {
 	private ThreadPoolTaskExecutor threadPool;
 
 	public void sendMail(final Mail mail) {
+
+		simpleMailMessage.setTo(mail.getTo());
+		simpleMailMessage.setSubject(mail.getSubject());
+		simpleMailMessage.setText(mail.getContent());
+		mailSender.send(simpleMailMessage);
+
 		// 使用线程池，处理发送邮件的任务
 		threadPool.execute(new Runnable() {
 			@Override
 			public void run() {
 				try {
-					simpleMailMessage.setTo(mail.getTo());
-					simpleMailMessage.setSubject(mail.getSubject());
-					simpleMailMessage.setText(mail.getContent());
-					// mailSender.send(simpleMailMessage);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
