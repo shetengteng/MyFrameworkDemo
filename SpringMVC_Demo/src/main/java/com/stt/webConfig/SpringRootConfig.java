@@ -1,5 +1,8 @@
 package com.stt.webConfig;
 
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +20,20 @@ import org.springframework.stereotype.Controller;
 		MyLogConfig.class, // 导入自定义日志
 		RedisConfig.class // 导入redis配置
 })
-public class SpringRootConfig {
+public class SpringRootConfig implements ApplicationContextAware {
+
+	// 配置PropertySource扫描,没有也可以扫描得到，可能是默认配置的问题
+	// @Bean
+	// public static PropertySourcesPlaceholderConfigurer
+	// propertySourcesPlaceholderConfigurer() {
+	// return new PropertySourcesPlaceholderConfigurer();
+	// }
+
+	@Override
+	public void setApplicationContext(ApplicationContext applicationContext)
+			throws BeansException {
+		// 通过实现 ApplicationContextAware 接口，可以获取ioc容器，侵入式注入
+
+	}
 
 }
