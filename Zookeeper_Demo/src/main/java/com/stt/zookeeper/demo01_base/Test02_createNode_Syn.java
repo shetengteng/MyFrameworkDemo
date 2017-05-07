@@ -28,7 +28,9 @@ public class Test02_createNode_Syn {
         try {
 
             // ZK的集群的地址，这里是伪集群方式
-            String connectAddr = "172.28.14.69:2181,172.28.14.69:2182,172.28.14.69:2183";
+            // String connectAddr =
+            // "172.28.14.69:2181,172.28.14.69:2182,172.28.14.69:2183";
+            String connectAddr = "192.168.0.119:2181,192.168.0.119:2182,192.168.0.119:2183";
             // session的超时时间 ms
             int sessionTimeout = 2000;
 
