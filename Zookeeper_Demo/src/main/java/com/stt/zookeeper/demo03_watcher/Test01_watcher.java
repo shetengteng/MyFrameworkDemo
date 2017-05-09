@@ -100,7 +100,7 @@ public class Test01_watcher {
             for (String item : path) {
                 if (item.equals(event.getPath()) || event.getPath() == null) {
                     Stat stat = zk.exists(item, true);
-                    // 要获取子节点的删除修改，需要使用getChildren,同时要设置为true
+                    // 要获取子节点的删除和添加，需要使用getChildren,同时要设置为true
                     if (stat != null) {
                         zk.getChildren(item, true);
                     }
