@@ -6,12 +6,11 @@ import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.zookeeper.CreateMode;
 
-public class Test03_updateNode {
+public class Test02_createNode_syn {
 
     public static void main(String[] args) {
 
         String connectAddr = "192.168.0.119:2181,192.168.0.119:2182,192.168.0.119:2183";
-
         int sessionTimeout = 5000;
         int connectTimeout = 5000;
 
@@ -20,8 +19,7 @@ public class Test03_updateNode {
         // 设置重连策略,初始时间为1s,重试10次
         RetryPolicy retryPolicy = new ExponentialBackoffRetry(1000, 10);
 
-        // 使用静态工厂类方法创建，可以使用链式编程风格
-        // 注意在最后使用build方法生成
+        // 使用静态工厂类方法创建，可以使用链式编程风格，注意在最后使用build方法生成
         CuratorFramework cf = CuratorFrameworkFactory.builder()
                 .connectString(connectAddr).connectionTimeoutMs(connectTimeout)
                 .sessionTimeoutMs(sessionTimeout).retryPolicy(retryPolicy)
@@ -36,7 +34,10 @@ public class Test03_updateNode {
             String forPath = cf.create().creatingParentsIfNeeded()
                     .withMode(CreateMode.PERSISTENT)
                     .forPath(path, "value01".getBytes());
+
             System.out.println("createNode:" + forPath);
+
+            //
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -44,6 +45,5 @@ public class Test03_updateNode {
             // 关闭连接
             cf.close();
         }
-
     }
 }
