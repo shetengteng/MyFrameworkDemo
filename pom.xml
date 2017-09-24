@@ -12,6 +12,7 @@
     <module>ActiveMQ_Spring</module>
 	<module>SpringMVC_Demo</module>
 	<module>Zookeeper_Demo</module>
+	<module>Shiro_Demo</module>
   </modules>
   
    <!-- 统一配置构件的版本号 -->
