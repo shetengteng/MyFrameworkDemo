@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.stt.quickstart;
+package com.stt.ch01_quickstart;
 
 import java.util.List;
 
@@ -28,28 +28,46 @@ import com.alibaba.rocketmq.common.message.MessageExt;
 /**
  * Consumer，订阅消息
  */
-public class Consumer {
+public class Consumer2 {
 
     public static void main(String[] args) throws InterruptedException,
             MQClientException {
-        // pushConsumer只能进行push操作，不能进行pull操作，即使可以设置，但是也不会有效果
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(
                 "quickstart_consumer");
         consumer.setNamesrvAddr("192.168.0.121:9876;192.168.0.122:9876");
         /**
-         * 设置Consumer第一次启动是从队列头部开始消费还是队列尾部开始消费 如果非第一次启动，那么按照上次消费的位置继续消费
+         * 设置Consumer第一次启动是从队列头部开始消费还是队列尾部开始消费 如果非第一次启动， 那么按照上次消费的位置继续消费
          */
         consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
         // 订阅相同的主题，和tag进行过滤操作
         consumer.subscribe("quickstart_topic", "*");
-
+        // 批量处理10条数据，指的是producer先发送批量数据，consumer再启动的时候进行获取数据，
+        // 如果consumer消费的速度和发送的速度一致，那么接收到的数据就是一条一条的
+        // 该值默认值是1
+        consumer.setConsumeMessageBatchMaxSize(10);
         consumer.registerMessageListener(new MessageListenerConcurrently() {
 
             @Override
             public ConsumeConcurrentlyStatus consumeMessage(
                     List<MessageExt> msgs, ConsumeConcurrentlyContext context) {
-                System.out.println(Thread.currentThread().getName()
-                        + " Receive New Messages: " + msgs.get(0));
+                try {
+                    // System.out.println(Thread.currentThread().getName()
+                    // + " Receive New Messages: " + msgs);
+                    // 注意：这里msgs的大小是1，消息是一个一个的接收的
+                    for (MessageExt msg : msgs) {
+                        String topic = msg.getTopic();
+                        String msgBody = new String(msg.getBody(), "utf-8");
+                        String tags = msg.getTags();
+                        System.out.println("收到的消息-topic:" + topic + ",tags:"
+                                + tags + ",msg:" + msgBody);
+
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    // 失败的情况下，稍后再进行发送，发送该返回码之后重试
+                    return ConsumeConcurrentlyStatus.RECONSUME_LATER;
+                }
                 return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
             }
         });

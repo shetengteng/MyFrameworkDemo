@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.stt.quickstart;
+package com.stt.ch01_quickstart;
 
 import com.alibaba.rocketmq.client.exception.MQClientException;
 import com.alibaba.rocketmq.client.producer.DefaultMQProducer;
@@ -25,6 +25,7 @@ import com.alibaba.rocketmq.common.message.Message;
  * 
  */
 public class Producer {
+
     public static void main(String[] args) throws MQClientException,
             InterruptedException {
         // 全局唯一的groupName
