@@ -11,6 +11,9 @@ import java.lang.annotation.Target;
 @Documented
 public @interface MyLog {
 
-	public String description() default "";
+    public String description() default "";
+
+    // 支持EL表达式的支持
+    public String fieldKey() default "";
 
 }
